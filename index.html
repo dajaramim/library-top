@@ -12,8 +12,21 @@
       <h2>My books</h2>
       <div id="books-container"></div>
     </main>
+    <form id="form">
+      <label for="title">Title</label>
+      <input id="title" type="text" />
 
-    <button id="add-btn">Add book</button>
+      <label for="author">Author</label>
+      <input id="author" type="text" />
+
+      <label for="pages">Pages</label>
+      <input id="pages" type="text" />
+
+      <label> <input type="radio" name="read" value="true" /> Read </label>
+
+      <label> <input type="radio" name="read" value="false" />Not read</label>
+      <button type="submit" id="add-btn">Add book</button>
+    </form>
 
     <script src="library.js"></script>
   </body>

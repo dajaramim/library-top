@@ -1,8 +1,7 @@
 booksContainer = document.querySelector('#books-container');
+form = document.querySelector('#form');
 addBtn = document.querySelector('#add-btn'); 
-
 const myLibrary = [];
-
 
 class Book {
   constructor(title, author, pages, read) {
@@ -13,8 +12,23 @@ class Book {
   }
 }
 
+function eventListeners() {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const title = document.querySelector('#title').value
+    const author = document.querySelector('#author').value
+    const pages = document.querySelector('#pages').value
+    const read = document.querySelector("input[name='read']:checked").value
+
+    book = new Book(title, author, pages, read)
+    addBookToLibrary(book)
+    clearHTML()
+    renderLibrary()
+    form.reset()
+  })
+}
+
 function addBookToLibrary(book) {
-  // do stuff here
   myLibrary.push(book);
 }
 
@@ -29,7 +43,7 @@ function renderLibrary() {
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
     bookPages.textContent = book.pages;
-    bookRead.textContent = book.read ? "Read" : "Not read";
+    bookRead.textContent = book.read === "true" ? "Read" : "Not Read";
 
     bookDiv.appendChild(bookTitle);
     bookDiv.appendChild(bookAuthor);
@@ -40,8 +54,13 @@ function renderLibrary() {
   });
 }
 
+function clearHTML() {
+  while (booksContainer.firstChild) {
+    booksContainer.removeChild(booksContainer.firstChild)
+  }
+}
+
 theHobbit = new Book("The Hobbit", "J.R.R Tolkien", "295", false);
 addBookToLibrary(theHobbit)
-console.log(myLibrary);
-
+eventListeners() 
 renderLibrary()
