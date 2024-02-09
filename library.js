@@ -107,6 +107,8 @@ function renderLibrary() {
     bookPages.textContent = book.pages + " pages";
     bookRead.textContent = book.read === "true" ? "Read" : "Not Read";
 
+    bookTitle.classList.add("text-3xl", "capitalize");
+    bookAuthor.classList.add("capitalize");
     bookRead.classList.add("cursor-pointer", "transition-colors", "read");
 
     if (bookRead.textContent === "Read") {
@@ -160,4 +162,6 @@ function clearHTML() {
   }
 }
 eventListeners();
+theHobbit = new Book("The Hobbit", "J.R.R Tolkien", "295", false);
+addBookToLibrary(theHobbit);
 renderLibrary();
